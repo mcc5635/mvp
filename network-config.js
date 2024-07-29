@@ -16,11 +16,28 @@ const networkConfig = {
       "971f006163a12ee3383a00d7743334480d6b1c83fdf60497e0c520b16d1a4ee421cc61375679b63466156fee6f2f1da5a7e630ba0b1cddb2704ef907ead223db",
     mockFunctionsPrivateKey: "0x09768a19def4dce2b6793d7dc807828ef47b681709cf1005627a93f0da9c8065",
   },
+  hardhat: {
+    linkEthPriceFeed: "0xdc530d9457755926550b59e8eccdae7624181557",
+    functionsPublicKey:
+      "971f006163a12ee3383a00d7743334480d6b1c83fdf60497e0c520b16d1a4ee421cc61375679b63466156fee6f2f1da5a7e630ba0b1cddb2704ef907ead223db",
+    mockFunctionsPrivateKey: "0x09768a19def4dce2b6793d7dc807828ef47b681709cf1005627a93f0da9c8065",
+  },
   mainnet: {
     linkToken: "0x514910771af9ca656af840dff83e8264ecf986ca",
+    linkEthPriceFeed: "0xdc530d9457755926550b59e8eccdae7624181557",
+    ethUsdPriceFeed: "0x5f4ec3df9cbd43714fe2740f5e3616155c5b8419",
   },
   polygon: {
     linkToken: "0xb0897686c545045afc77cf20ec7a532e3120e0f1",
+    linkEthPriceFeed: "0xb77fa460604b9c6435a235d057f7d319ac83cb53",
+    maticUsdPriceFeed: "0xab594600376ec9fd91f8e885dadf0ce036862de0",
+  },
+  polygon_zkevm: {
+    linkToken: "0x68d9baA40394dA2e2c1ca05d30BF33F52823ee7B",
+    functionsOracleProxy: "0x...zkevmOracleAddress", // Update with the actual Oracle address
+    functionsBillingRegistryProxy: "0x...zkevmBillingRegistryAddress",
+    functionsPublicKey: "0x...zkevmPublicKey",
+    maticUsdPriceFeed: "0xab594600376ec9fd91f8e885dadf0ce036862de0",
   },
   mumbai: {
     linkToken: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",

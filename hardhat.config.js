@@ -11,12 +11,20 @@ const isTestEnvironment = npmCommand == "test" || npmCommand == "test:unit"
 let MAINNET_RPC_URL = process.env.MAINNET_RPC_URL
 let POLYGON_MAINNET_RPC_URL = process.env.POLYGON_MAINNET_RPC_URL
 let MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL
+let POLYGON_ZKEVM_RPC_URL = process.env.POLYGON_ZKEVM_RPC_URL
 let SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
 
 // Ensure one of the RPC endpoints has been set
-if (!isTestEnvironment && !MAINNET_RPC_URL && !POLYGON_MAINNET_RPC_URL && !MUMBAI_RPC_URL && !SEPOLIA_RPC_URL) {
+if (
+  !isTestEnvironment &&
+  !POLYGON_ZKEVM_RPC_URL &&
+  !MAINNET_RPC_URL &&
+  !POLYGON_MAINNET_RPC_URL &&
+  !MUMBAI_RPC_URL &&
+  !SEPOLIA_RPC_URL
+) {
   throw Error(
-    "One of the following environment variables must be set: MAINNET_RPC_URL, SEPOLIA_RPC_URL, POLYGON_MAINNET_RPC_URL, or MUMBAI_RPC_URL"
+    "One of the following environment variables must be set: POLYGON_ZKEVM_RPC_URL, MAINNET_RPC_URL, SEPOLIA_RPC_URL, POLYGON_MAINNET_RPC_URL, or MUMBAI_RPC_URL"
   )
 }
 
@@ -98,6 +106,15 @@ module.exports = {
       nativePriceFeed: "0xab594600376ec9fd91f8e885dadf0ce036862de0",
       mainnet: true,
     },
+    polygon_zkevm: {
+      url: POLYGON_ZKEVM_RPC_URL ?? "UNSET",
+      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+      chainId: 1101, // Update with the correct chain ID for Polygon zkEVM Testnet
+      nativeCurrencySymbol: "MATIC",
+      nativeCurrencyDecimals: 18,
+      nativePriceFeed: "0xab594600376ec9fd91f8e885dadf0ce036862de0", //maticUsdPriceFeed
+      mainnet: false,
+    },
     mumbai: {
       url: MUMBAI_RPC_URL ?? "UNSET",
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
@@ -124,11 +141,14 @@ module.exports = {
       polygon: POLYGONSCAN_API_KEY,
       sepolia: ETHERSCAN_API_KEY,
       polygonMumbai: POLYGONSCAN_API_KEY,
+      polygon_zkevm: POLYGONSCAN_API_KEY,
     },
   },
   gasReporter: {
     enabled: REPORT_GAS,
     currency: "USD",
+    coinmarketcap: process.env.COINMARKETCAP_API_KEY,
+    token: "MATIC",
     outputFile: "gas-report.txt",
     noColors: true,
   },

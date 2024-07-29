@@ -1,10 +1,10 @@
 # Chainlink Functions <> Parametric Insurance Sample app
 
-This use case showcases how Chainlink Functions can be used to trigger a parametric insurance to offer payouts to clients, with Chainlink Functions being used to fetch data from 3 different weather APIs for tempreture data.
+This use case showcases how Chainlink Functions can be used to trigger a parametric insurance to offer payouts to clients, with Chainlink Functions being used to fetch data from 3 different weather APIs for temperature data.
 
 [Parametric Insurance](https://en.wikipedia.org/wiki/Parametric_insurance) offers payouts to clients based upon a trigger event. In the sample, a smart contract will offers payouts based on the temperature in New York City. If the temperature falls below 60 degrees Fahrenheit (you can define the different number) for three consecutive days, the insurance will pay the client with balances.
 
-There is a smart contract called `ParametricInsurance` created for the use case, and clients can get payout if the predefined conditions in the samrt contract are met.
+There is a smart contract called `ParametricInsurance` created for the use case, and clients can get payout if the predefined conditions in the smart contract are met.
 
 In the `ParametricInsurance`, anyone can call function `executeRequest`(there is a limit that only one call per day) and send a request to Chainlink Functions. After the request event is detected by off-chain Chainlink node, the node will fetch the data and execute the computing logics defined in `Parametric-insurance-example.js`.
 
