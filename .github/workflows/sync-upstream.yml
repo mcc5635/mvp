@@ -1,0 +1,43 @@
+name: Sync with upstream repository
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual triggering of the workflow
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/smartcontractkit/functions-insurance.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Create a new branch
+        run: |
+          git checkout -b sync-upstream
+          git merge upstream/main --allow-unrelated-histories
+          git push -u origin sync-upstream
+
+      - name: Create pull request
+        id: create_pr
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'Sync with upstream repository'
+          branch: sync-upstream
+          title: 'Sync with upstream repository'
+          body: 'This PR syncs the fork with the upstream repository.'
+          labels: 'auto-sync'
