@@ -1,0 +1,52 @@
+{
+  "contracts": [
+    {
+      "type": "Thermal",
+      "concern": "High Power Demand",
+      "energy_type": "Temperature",
+      "data_source": "GHCN-D Laguardia Airport",
+      "location": "New York City, NY",
+      "structure": "A call option that pays when seasonal Heating Degree Days (HDD) accumulation exceeds a certain strike value.",
+      "payout": "Tick * max(Seasonal HDD Accumulation - Strike, 0)",
+      "tick": "USD/HDD"
+    },
+    {
+      "type": "Wind",
+      "concern": "Lower Wind Generation",
+      "energy_type": "Wind",
+      "data_source": "Transformed ERA5 Wind",
+      "location": "Germany",
+      "structure": "A put option that pays when monthly accumulated wind generation falls below a certain strike value.",
+      "payout": "Tick * max(Strike - Wind Generation, 0)",
+      "tick": "EUR/MWh"
+    },
+    {
+      "type": "Solar",
+      "concern": "Cloudier Than Average",
+      "energy_type": "Solar",
+      "data_source": "ERA5 Solar Irradiance",
+      "location": "Texas",
+      "structure": "A put option that pays when the monthly solar generation falls below a certain strike value.",
+      "payout": "Tick * max(Strike - Solar Generation, 0)",
+      "tick": "$/MWh"
+    },
+    {
+      "type": "Cold Weather",
+      "concern": "Consecutive Low Temperature",
+      "energy_type": "Temperature",
+      "data_source": ["OpenWeather", "World Weather Online", "Ambee Data"],
+      "location": "New York City, NY",
+      "structure": "A put option that pays out if temperature falls below 60 degrees Fahrenheit for three consecutive days.",
+      "contract_details": {
+        "COLD_DAYS_THRESHOLD": "3 consecutive days with temperature below 60°F.",
+        "DAY_IN_SECONDS": "60 seconds (for testing) or 86400 seconds (for production).",
+        "Insurer": "The contract deployer.",
+        "Client": "Defined at contract creation.",
+        "Current Temperature Check": "Ensures temperature check is performed only once per day.",
+        "Payout Mechanism": "If the temperature remains below the threshold for three consecutive days, the client receives the contract balance, and the contract is terminated."
+      },
+      "payout": "Tick × (max(Strike − max(Ti, Ti+1, Ti+2), 0) × I(Ti < 60°F and Ti+1 < 60°F and Ti+2 < 60°F))",
+      "tick": "USD/°F"
+    }
+  ]
+}
