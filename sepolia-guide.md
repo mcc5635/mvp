@@ -29,3 +29,12 @@ https://github.com/mcc5635/energy-derivative-contracts
 
 5. How can we partner with Chainlink to continue development on ETH/LINK SEPOLIA protocol?
 
+6. Do the following data sources need to be ran through gridded-etl-tools and be processed into Zarrs before conversion into a smart contract?
+
+The following data sources need to be ran through gridded-etl-tools (Raw Climate Data: JSON) to Merged Zarr (IPFS hash) before conversion into smart contract
+
+`https://github.com/Arbol-Project/gridded-etl-tools`
+
+- openWeatherApi
+- worldWeatherApi
+- ambeeWeatherApi
