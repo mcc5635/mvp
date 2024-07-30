@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import "./styling/WeatherOptions.css"
 import AgreementDetails from "./AgreementDetails" // Import the AgreementDetails component
 
@@ -37,9 +38,15 @@ const weatherOptionsData = [
 
 const WeatherOptions = () => {
   const [selectedOption, setSelectedOption] = useState(null)
+  const navigate = useNavigate()
 
   const handleSelect = (option) => {
     setSelectedOption(option)
+  }
+
+  const handleNext = () => {
+    const selectedWeatherOption = weatherOptionsData.find((option) => option.key === selectedOption)
+    navigate("/propose", { state: { weatherType: selectedWeatherOption ? selectedWeatherOption.title : "" } })
   }
 
   return (
@@ -59,7 +66,9 @@ const WeatherOptions = () => {
         ))}
       </div>
       <AgreementDetails /> {/* Add the AgreementDetails component */}
-      <button className="next-button">Next</button>
+      <button className="next-button" onClick={handleNext}>
+        Next
+      </button>
     </div>
   )
 }

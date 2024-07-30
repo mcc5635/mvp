@@ -1,0 +1,34 @@
+.payout-terms {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .contract-overview {
+    background-color: #e6f7ff;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+  
+  .contract-overview-content span {
+    font-weight: bold;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #218838;
+  }
+  

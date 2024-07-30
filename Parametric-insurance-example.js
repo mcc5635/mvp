@@ -110,7 +110,7 @@ const getMedianTemp = (temps) => {
   }
 }
 
-console.log(`Collected temperatuer data is ${temperatures}`)
+console.log(`Collected temperature data is ${temperatures}`)
 const medianTemp = getMedianTemp(temperatures)
 console.log(`data to encode is: ${medianTemp}`)
 
