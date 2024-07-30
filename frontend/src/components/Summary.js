@@ -1,46 +1,38 @@
 import React from "react"
+import { useLocation } from "react-router-dom"
 import "./styling/Summary.css"
 
-const summaryData = [
-  {
-    key: "weatherType",
-    title: "Weather Type",
-    content: "Low Rainfall",
-  },
-  {
-    key: "timePeriod",
-    title: "Time Period",
-    content: "July 2019 to November 2019",
-  },
-  {
-    key: "location",
-    title: "Location",
-    content: "Southampton, Suffolk County, New York, US",
-    map: true,
-  },
-  {
-    key: "payout",
-    title: "Payout",
-    content: "For every 1% that rainfall is less than NASA CHIRPS Rainfall (0.25 deg), I will be paid $1000",
-  },
-]
-
 const Summary = () => {
+  const location = useLocation()
+  const { weatherType, startDate, endDate, rainfallIndex, payoutType, payoutStructure } = location.state
+
   return (
     <div className="summary">
       <h2>Summary</h2>
-      <div className="premium-bar">Net Zero's estimated premium cost is: $23007</div>
+      <div className="premium-bar"></div>
       <div className="summary-boxes">
-        {summaryData.map((item) => (
-          <div key={item.key} className="summary-box">
-            <h3>{item.title}</h3>
-            {item.map ? <img src="map-location.png" alt="Map location" /> : <p>{item.content}</p>}
-          </div>
-        ))}
+        <div className="summary-box">
+          <h3>Weather Type</h3>
+          <p>{weatherType}</p>
+        </div>
+        <div className="summary-box">
+          <h3>Time Period</h3>
+          <p>
+            {startDate} to {endDate}
+          </p>
+        </div>
+        <div className="summary-box">
+          <h3>Location</h3>
+          <img src="map-location.png" alt="Map location" />
+        </div>
+        <div className="summary-box">
+          <h3>Payout</h3>
+          <p>
+            {payoutType}: For every 1% that rainfall is less than {payoutStructure}, I will be paid $1000
+          </p>
+        </div>
       </div>
-      <div className="button-container">
-        <button className="request-quote-button">Request Quote</button>
-      </div>
+      <button className="request-quote-button">Request Quote</button>
     </div>
   )
 }

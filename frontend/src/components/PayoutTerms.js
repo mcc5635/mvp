@@ -1,14 +1,57 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React, { useState, useEffect } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 import "./styling/PayoutTerms.css"
 
 const PayoutTerms = () => {
   const [rainfallIndex, setRainfallIndex] = useState("")
   const [payoutType, setPayoutType] = useState("")
   const [payoutStructure, setPayoutStructure] = useState("")
-  const [contractOverview, setContractOverview] = useState("")
+  const [maxPayout, setMaxPayout] = useState(0)
+  const [premiumCost, setPremiumCost] = useState(0)
+  const location = useLocation()
+  const { weatherType, latitude, longitude, locationName, startDate, endDate } = location.state || {}
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    // Update maxPayout and premiumCost based on selected values
+    if (rainfallIndex && payoutType && payoutStructure) {
+      let calculatedMaxPayout = 100000 // Base max payout
+      let calculatedPremiumCost = 23007 // Base premium cost
+
+      // Calculate multiplier based on payout structure
+      let multiplier
+      switch (payoutStructure) {
+        case "120% of Average (485mm)":
+          multiplier = 1.2
+          break
+        case "110% of Average (445mm)":
+          multiplier = 1.1
+          break
+        case "Average (405mm)":
+          multiplier = 1.0
+          break
+        case "90% of Average (364mm)":
+          multiplier = 0.9
+          break
+        case "80% of Average (324mm)":
+          multiplier = 0.8
+          break
+        case "70% of Average (283mm)":
+          multiplier = 0.7
+          break
+        default:
+          multiplier = 1.0
+          break
+      }
+
+      calculatedMaxPayout *= multiplier
+      calculatedPremiumCost *= multiplier
+
+      setMaxPayout(calculatedMaxPayout)
+      setPremiumCost(calculatedPremiumCost)
+    }
+  }, [rainfallIndex, payoutType, payoutStructure])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -16,17 +59,15 @@ const PayoutTerms = () => {
     navigate("/summary", {
       state: {
         rainfallIndex,
+        weatherType,
+        startDate,
+        endDate,
         payoutType,
         payoutStructure,
-        contractOverview,
+        maxPayout,
+        premiumCost,
       },
     })
-  }
-
-  const calculateOverview = () => {
-    const maxPayout = 100000 // Replace with actual calculation logic
-    const premiumCost = 23007 // Replace with actual calculation logic
-    return `The maximum payout you can receive with this payout structure is $${maxPayout}. \nPremium Cost: $${premiumCost}`
   }
 
   return (
@@ -61,7 +102,10 @@ const PayoutTerms = () => {
         </div>
         <div className="form-group">
           <label>Contract Overview</label>
-          <p>{calculateOverview()}</p>
+          <div>
+            The maximum payout you can receive with this payout structure is ${maxPayout.toFixed(2)}.<br />
+            Premium Cost: ${premiumCost.toFixed(2)}
+          </div>
         </div>
         <button type="submit" className="submit-button">
           Next
