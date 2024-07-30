@@ -317,14 +317,6 @@ To manually trigger a request, use the command `npx hardhat functions-perform-up
 │   ├── index.js
 │   ├── simulateRequest.js
 ├── assets
-│   ├── ui1.png
-│   ├── ui2.png
-│   ├── ui3.png
-│   ├── ui4.png
-│   ├── ui5.png
-│   ├── ui6.png
-│   ├── ui7.png
-│   ├── ui8.png
 ├── contracts
 │   ├── dev
 │   │   ├── functions
