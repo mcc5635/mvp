@@ -292,6 +292,7 @@ Once the contract is registered for upkeep, check the latest response or error w
 For debugging, use the command `npx hardhat functions-check-upkeep --network network_name_here --contract contract_address_here` to see if Automation needs to call _performUpkeep_.
 To manually trigger a request, use the command `npx hardhat functions-perform-upkeep --network network_name_here --contract contract_address_here`.
 
+```
 .
 ├── .github
 │   ├── actions
@@ -369,3 +370,4 @@ To manually trigger a request, use the command `npx hardhat functions-perform-up
 ├── passes.key
 ├── sepolia-guide.md
 ├── yarn.lock
+```
