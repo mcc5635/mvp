@@ -1,0 +1,27 @@
+.agreement-details {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .agreement-details p {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+  }
+  
+  .options input[type="radio"] {
+    margin: 0;
+  }
+  

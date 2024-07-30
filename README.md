@@ -292,5 +292,80 @@ Once the contract is registered for upkeep, check the latest response or error w
 For debugging, use the command `npx hardhat functions-check-upkeep --network network_name_here --contract contract_address_here` to see if Automation needs to call _performUpkeep_.
 To manually trigger a request, use the command `npx hardhat functions-perform-upkeep --network network_name_here --contract contract_address_here`.
 
-## Disclaimer
-This tutorial offers educational examples of how to use a Chainlink system, product, or service and is provided to demonstrate how to interact with Chainlink’s systems, products, and services to integrate them into your own. This template is provided “AS IS” and “AS AVAILABLE” without warranties of any kind, it has not been audited, and it may be missing key checks or error handling to make the usage of the system, product, or service more clear. Do not use the code in this example in a production environment without completing your own audits and application of best practices. Neither Chainlink Labs, the Chainlink Foundation, nor Chainlink node operators are responsible for unintended outputs that are generated due to errors in code
+.
+├── .github
+│   ├── actions
+│   │   └── setup
+│   │       ├── action.yml
+│   ├── workflows
+│   │   ├── main.yml
+│   │   ├── sync-upstream.yml
+├── .husky
+│   └── pre-commit
+├── frontend
+│   └── pre-commit
+├── FunctionsSandboxLibrary
+│   ├── Functions.js
+│   ├── Logic.js
+│   ├── Sandbox.js
+│   ├── Validators.js
+│   ├── buildRequest.js
+│   ├── encryptSecrets.js
+│   ├── getRequestConfig.js
+│   ├── handler.js
+│   ├── index.js
+│   ├── simulateRequest.js
+├── assets
+│   ├── ui1.png
+│   ├── ui2.png
+│   ├── ui3.png
+│   ├── ui4.png
+│   ├── ui5.png
+│   ├── ui6.png
+│   ├── ui7.png
+│   ├── ui8.png
+├── contracts
+│   ├── dev
+│   │   ├── functions
+│   │   │   ├── interfaces
+│   │   │   └── or2
+│   │   └── vendor
+│   ├── AuthorizedReceiver.sol
+│   ├── LinkToken.sol
+│   ├── MockV3Aggregator.sol
+│   ├── AutomatedFunctionsConsumer.sol
+│   ├── FunctionsConsumer.sol
+│   ├── ParametricInsurance.sol
+│   ├── contract-design.md
+├── scripts
+│   ├── generateKeypair.js
+│   ├── simulateFunctionsJavaScript.js
+├── tasks
+│   ├── Functions-billing
+│   ├── Functions-client
+│   │   ├── utils
+│   │   │   ├── accounts.js
+│   │   │   ├── balance.js
+│   │   │   ├── block-numbers.js
+│   │   │   ├── index.js
+├── test/unit
+│   ├── FunctionsConsumer.spec.js
+├── .env.example
+├── .gitignore
+├── .solhint.json
+├── .solhintignore
+├── API-request-example.js
+├── Functions-request-config.js
+├── LICENSE
+├── parametric-insurance-example.js
+├── README.md
+├── calculation-example.js
+├── contract-diff.sh
+├── contract.json
+├── hardhat.config.js
+├── network-config.js
+├── package.json
+├── parametric-insurance-contracts.md
+├── passes.key
+├── sepolia-guide.md
+├── yarn.lock
