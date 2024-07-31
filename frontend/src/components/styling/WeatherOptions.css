@@ -23,12 +23,13 @@
   }
   
   .option.selected {
-    border-color: green;
-    background-color: #f0fff0;
+    border-color: #003366;
+    background-color: #ADD8E6; /* Change this to light blue */
+    color: white; /* Optional: change text color to white */
   }
   
   .next-button {
-    background-color: green;
+    background-color: #003366; /* Dark blue color for the button */
     color: white;
     border: none;
     padding: 10px 20px;
@@ -38,7 +39,7 @@
   }
   
   .next-button:hover {
-    background-color: darkgreen;
+    background-color: #002244; /* Darker blue on hover */
   }
   
   .icon {

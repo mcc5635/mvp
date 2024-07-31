@@ -5,12 +5,12 @@ import "./styling/Sidebar.css"
 const Sidebar = () => {
   return (
     <div className="sidebar">
+      <div className="logo">
+        <img src="/logo.jpeg" alt="logo" />
+      </div>
       <ul className="sidebar-links">
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/propose">Propose a Contract</Link>
+          <Link to="/">Propose a Contract</Link>
         </li>
         <li>
           <Link to="/accept">Accept a Contract</Link>

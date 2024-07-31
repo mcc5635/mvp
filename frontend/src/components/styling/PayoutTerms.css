@@ -21,7 +21,7 @@
   .submit-button {
     width: 100%;
     padding: 0.5rem;
-    background-color: #28a745;
+    background-color: #003366; /* Dark blue color for the button */
     color: white;
     border: none;
     border-radius: 5px;
@@ -29,6 +29,6 @@
   }
   
   .submit-button:hover {
-    background-color: #218838;
+    background-color: #002244; /* Darker blue on hover */
   }
   

@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import "./styling/WeatherOptions.css"
-import AgreementDetails from "./AgreementDetails" // Import the AgreementDetails component
 
 const weatherOptionsData = [
   {
@@ -65,7 +64,6 @@ const WeatherOptions = () => {
           </div>
         ))}
       </div>
-      <AgreementDetails /> {/* Add the AgreementDetails component */}
       <button className="next-button" onClick={handleNext}>
         Next
       </button>

@@ -43,7 +43,7 @@
   
   .request-quote-button {
     display: block;
-    background: #27ae60;
+    background: #003366; /* Dark blue color for the button */
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -53,6 +53,6 @@
   }
   
   .request-quote-button:hover {
-    background: #219150;
+    background: #002244; /* Darker blue on hover */
   }
   

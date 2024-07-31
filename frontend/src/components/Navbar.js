@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src="/path-to-your-logo.svg" alt="Logo" />
+        <img src="./functions-insurance/assets/logo.webp" alt="logo" />
       </div>
       <ul className="navbar-links">
         <li>
