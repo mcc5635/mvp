@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import "./styling/Navbar.css"
 
 const Navbar = () => {
@@ -8,6 +9,9 @@ const Navbar = () => {
         <img src="./functions-insurance/assets/logo.webp" alt="logo" />
       </div>
       <ul className="navbar-links">
+        <li>
+          <a href="/sign-in">Sign In</a>
+        </li>
         <li>
           <a href="/">Network</a>
         </li>

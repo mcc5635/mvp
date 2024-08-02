@@ -23,7 +23,6 @@ const Summary = () => {
         </div>
         <div className="summary-box">
           <h3>Location</h3>
-          <img src="map-location.png" alt="Map location" />
         </div>
         <div className="summary-box">
           <h3>Payout</h3>

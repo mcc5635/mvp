@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src="/logo.jpeg" alt="logo" />
+        <img src="/favicon-a.ico" alt="logo" />
       </div>
       <ul className="sidebar-links">
         <li>
