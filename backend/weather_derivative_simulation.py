@@ -174,7 +174,7 @@ def RSS(y, y_pred):
     return np.sqrt( (y - y_pred)**2 ).sum()
 
 # Model 2 (Generalized)
-def model_fit_general(x, a, b, a1, b1, theta, phi)
+def model_fit_general(x, a, b, a1, b1, theta, phi):
     omega = 2*np.pi/365.25
     y_pred = a + b*x + a1*np.cos(omega*x + theta) + b1*np.sin(omega*x) + phi
     return y_pred
