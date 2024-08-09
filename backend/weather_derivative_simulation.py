@@ -134,25 +134,25 @@ class Engine:
         print("Min Temperature Range: ", self.temps['Tmin'].min(), self.temps['Tmin'].max())
         print("Average Temperature Range: ", self.temps['T'].min(), self.temps['T'].max())
 
-# 5.1.4 (page 14) Seasonal Decomposition
-# come up with new label for decompose_result
-decompose_result = seasonal_decompose(temps['T'], model='additive', period=int(365), extrapolate_trend='freq')
-trend = decompose_result.trend
-seasonal = decompose_result.seasonal
-residual = decompose_result.residual
+        # 5.1.4 (page 14) Seasonal Decomposition
+        # come up with new label for decompose_result
+        self.decompose_result = seasonal_decompose(self.temps['T'], model='additive', period=int(365), extrapolate_trend='freq')
+        trend = self.decompose_result.trend
+        seasonal = self.decompose_result.seasonal
+        residual = self.decompose_result.residual
 
-decompose_result.plot()
-plt.show()
+        self.decompose_result.plot()
+        plt.show()
 
-Years=20
-years_examine = 365*Years
-fig, axs = plt.subplots(3, figsize=(8,6))
-fig.suptitle('Removed Seasonality and Trend')
-axs[0].plot(trend[-years_examine:])
-axs[1].plot(seasonal[-years_examine:])
-axs[1].set_ylim([-10,10])
-axs[2].plot(residual[-years_examine:])
-axs[2].set_ylim([-10,10])
+        self.Years=20
+        self.years_examine = 365*self.Years
+        self.fig, self.axs = plt.subplots(3, figsize=(8,6))
+        self.fig.suptitle('Removed Seasonality and Trend')
+        self.axs[0].plot(trend[-years_examine:])
+        self.axs[1].plot(seasonal[-years_examine:])
+        self.axs[1].set_ylim([-10,10])
+        self.axs[2].plot(residual[-years_examine:])
+        self.axs[2].set_ylim([-10,10])
 
 # 5.1.5 Fit models to daily average temperature time series, model parameters analysis
 #

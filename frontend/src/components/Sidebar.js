@@ -6,7 +6,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src="/favicon-a.ico" alt="logo" />
+        <img src="/favicon-a.png" alt="logo" />
       </div>
       <ul className="sidebar-links">
         <li>
@@ -16,7 +16,13 @@ const Sidebar = () => {
           <Link to="/accept">Accept a Contract</Link>
         </li>
         <li>
-          <Link to="/portfolio">Portfolio</Link>
+          <Link to="/earth/portfolio">Portfolio</Link>
+        </li>
+        <li>
+          <Link to="/earth/openearth">Open Earth</Link>
+        </li>
+        <li>
+          <Link to="/earth/assetlibrary">Asset Library</Link>
         </li>
       </ul>
     </div>

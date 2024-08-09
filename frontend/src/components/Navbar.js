@@ -13,13 +13,7 @@ const Navbar = () => {
           <a href="/sign-in">Sign In</a>
         </li>
         <li>
-          <a href="/">Network</a>
-        </li>
-        <li>
-          <a href="/propose">Current User</a>
-        </li>
-        <li>
-          <a href="/accept">User Balances</a>
+          <a href="/">Settings</a>
         </li>
       </ul>
     </nav>
