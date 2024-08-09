@@ -12,128 +12,127 @@ from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.ar_model import AutoReg, ar_select_order, AutoRegResults
 
-# Load maximum and minimum temperature data
-max_temp = pd.read_csv('./data/maximum_temperature.csv')
-min_temp = pd.read_csv('./data/minimum_temperature.csv')
+class Engine:
+    def __init__(self, max_temp=None, min_temp=None):
+        self.max_temp,
+        self.min_temp
+        self.temps = None
+        self.temps_season = None
+        self.first_ord = None
 
-# Check the data loaded correctly
-print("Max Temp Data:\n", max_temp.head())
-print("Min Temp Data:\n", min_temp.head())
+    def create_datetime(self, row):
+        try:
+            return dt.datetime(int(row['Year']), int(row['Month']), int(row['Day']))
+        except Exception as e:
+            print("Error creating datetime", e)
+            return None
+        
+    def preprocess_data(self):
+        self.max_temp = pd.read_csv('./data/maximum_temperature.csv')
+        self.min_temp = pd.read_csv('./data/minimum_temperature.csv')
 
-# Define function to create datetime
-def create_datetime(row):
-    try:
-        return dt.datetime(int(row['Year']), int(row['Month']), int(row['Day']))
-    except Exception as e:
-        print("Error creating datetime:", e)
-        return None
+        print("Max Temp Data:\n", self.max_temp.head())
+        print("Min Temp Data:\n", self.min_temp.head())
     
-max_temp['Date'] = max_temp.apply(create_datetime, axis=1)
-min_temp['Date'] = min_temp.apply(create_datetime, axis=1)
+        self.max_temp['Date'] = self.max_temp.apply(self.create_datetime, axis=1)
+        self.min_temp['Date'] = self.min_temp.apply(self.create_datetime, axis=1)
 
-# Set 'Date' as the index
-max_temp.set_index('Date', inplace=True)
-min_temp.set_index('Date', inplace=True)
+        self.max_temp.set_index('Date', inplace=True)
+        self.min_temp.set_index('Date', inplace=True)
 
-# Drop unnecessary columns
-drop_cols_max = ['Product code', 'Station number', 'Year', 'Month', 'Day', 
-                 'Days of accumulation of maximum temperature', 'Quality']
-drop_cols_min = ['Product code', 'Station number', 'Year', 'Month', 'Day', 
-                 'Days of accumulation of minimum temperature', 'Quality']
+        self.drop_cols_max = ['Product code', 'Station number', 'Year', 'Month', 'Day', 
+                    'Days of accumulation of maximum temperature', 'Quality']
+        self.drop_cols_min = ['Product code', 'Station number', 'Year', 'Month', 'Day', 
+                    'Days of accumulation of minimum temperature', 'Quality']
 
-max_temp.drop(columns=drop_cols_max, inplace=True)
-min_temp.drop(columns=drop_cols_min, inplace=True)
+        self.max_temp.drop(columns=self.drop_cols_max, inplace=True)
+        self.min_temp.drop(columns=self.drop_cols_min, inplace=True)
+        self.max_temp.rename(columns={'Maximum temperature (Degree F)':'Tmax'}, inplace=True)
+        self.min_temp.rename(columns={'Minimum temperature (Degree F)':'Tmin'}, inplace=True)
 
-# Rename columns
-max_temp.rename(columns={'Maximum temperature (Degree F)':'Tmax'}, inplace=True)
-min_temp.rename(columns={'Minimum temperature (Degree F)':'Tmin'}, inplace=True)
+        self.temps = self.max_temp.merge(self.min_temp, left_index=True, right_index=True)
 
-# Merge DataFrames
-temps = max_temp.merge(min_temp, left_index=True, right_index=True)
+        self.temps['T'] = (self.temps['Tmax'] + self.temps['Tmin']) / 2
+        self.temps.dropna(inplace=True)
 
-# Calculate Daily Average Temperature
-temps['T'] = (temps['Tmax'] + temps['Tmin']) / 2
-temps.dropna(inplace=True)
+        print("Final Temps DataFrame:\n", self.temps.head())
 
-# Debug: Check final temps DataFrame
-print("Final Temps DataFrame:\n", temps.head())
+        # Winter and Summer seasons Split
+        self.temps_season = self.temps.copy(deep=True)
+        self.temps_season['month'] = self.temps_season.index.month
+        mask = (self.temps_season['month'] >= 5) & (self.temps_season['month'] <= 10)
+        self.temps_season['winter'] = np.where(mask, 1, 0)
+        self.temps_season['summer'] = np.where(self.temps_season['winter'] != 1, 1, 0)
 
-# Divide DataFrame by Winter and Summer seasons
-temps_season = temps.copy(deep=True)
-temps_season['month'] = temps_season.index.month
-mask = (temps_season['month'] >= 5) & (temps_season['month'] <= 10)
-temps_season['winter'] = np.where(mask, 1, 0)
-temps_season['summer'] = np.where(temps_season['winter'] != 1, 1, 0)
+        # Plot entire dataset
+        self.temps.plot(figsize=(8, 6))
+        plt.title('Time Series of Temperatures')
+        plt.show()
 
-# Plot entire dataset
-temps.plot(figsize=(8, 6))
-plt.title('Time Series of Temperatures')
-plt.show()
+        # Plot last 5000 data points
+        self.temps[-5000:].plot(figsize=(8, 6))
+        plt.title('Time Series of Last 5000 Temperature Readings')
+        plt.show()
 
-# Plot last 5000 data points
-temps[-5000:].plot(figsize=(8, 6))
-plt.title('Time Series of Last 5000 Temperature Readings')
-plt.show()
+        # Temperature Distributions
+        plt.figure(figsize=(8, 6))
+        self.temps.Tmax.hist(bins=60, alpha=0.6, label='Tmax')
+        self.temps.Tmin.hist(bins=60, alpha=0.6, label='Tmin')
+        self.temps['T'].hist(bins=60, alpha=0.8, label='T')
+        plt.legend()
+        plt.title('Temperature Distributions')
+        plt.show()
 
-# Plot Temperature Distributions
-plt.figure(figsize=(8, 6))
-temps.Tmax.hist(bins=60, alpha=0.6, label='Tmax')
-temps.Tmin.hist(bins=60, alpha=0.6, label='Tmin')
-temps['T'].hist(bins=60, alpha=0.8, label='T')
-plt.legend()
-plt.title('Temperature Distributions')
-plt.show()
+        # Summer and Winter Temperature Distributions
+        plt.figure(figsize=(8, 6))
+        self.temps_season[self.temps_season['summer'] == 1]['T'].hist(bins=60, alpha=0.8, label='Summer')
+        self.temps_season[self.temps_season['winter'] == 1]['T'].hist(bins=60, alpha=0.8, label='Winter')
+        plt.legend()
+        plt.title('Seasonal Temperature Distributions')
+        plt.show()
 
-# Summer and Winter Temperature Distributions
-plt.figure(figsize=(8, 6))
-temps_season[temps_season['summer'] == 1]['T'].hist(bins=60, alpha=0.8, label='Summer')
-temps_season[temps_season['winter'] == 1]['T'].hist(bins=60, alpha=0.8, label='Winter')
-plt.legend()
-plt.title('Seasonal Temperature Distributions')
-plt.show()
+        # Rolling Calculations for Mean and Variance
+        self.temps.sort_index(inplace=True)
+        # sort Df by date
+        self.temps.sort_index(inplace=True)
 
-# Rolling Calculations for Mean and Variance
-temps.sort_index(inplace=True)
-# Ensure the DataFrame is sorted by date
-temps.sort_index(inplace=True)
+        # Adjust the rolling window size
+        self.Years = 1  # Try with a 5-year window instead of 20 years
 
-# Adjust the rolling window size
-Years = 1  # Try with a 5-year window instead of 20 years
+        # Calculate rolling mean and variance
+        self.rolling_mean = self.temps['T'].rolling(window=365*Years, min_periods=1).mean()
+        self.rolling_variance = self.temps['T'].rolling(window=365*Years, min_periods=1).var()
 
-# Calculate rolling mean and variance
-rolling_mean = temps['T'].rolling(window=365*Years, min_periods=1).mean()
-rolling_variance = temps['T'].rolling(window=365*Years, min_periods=1).var()
+        # Debug: Check rolling mean and variance with new window size
+        print("Rolling Mean (first 5 values):\n", self.rolling_mean.head())
+        print("Rolling Variance (first 5 values):\n", self.rolling_variance.head())
 
-# Debug: Check rolling mean and variance with new window size
-print("Rolling Mean (first 5 values):\n", rolling_mean.head())
-print("Rolling Variance (first 5 values):\n", rolling_variance.head())
+        # Create a plot for rolling mean and variance with separate axes
+        self.fig, self.ax1 = plt.subplots(figsize=(12, 8))
 
-# Create a plot for rolling mean and variance with separate axes
-fig, ax1 = plt.subplots(figsize=(12, 8))
+        # Plot rolling mean
+        self.ax1.plot(temps.index, self.rolling_mean, color="tab:red", label='Mean')
+        self.ax1.set_xlabel("Date")
+        self.ax1.set_ylabel("Temperature", color="tab:red")
+        self.ax1.tick_params(axis='y', labelcolor="tab:red")
+        self.ax1.set_title("Rolling mean and variance over annual periods")
 
-# Plot rolling mean
-ax1.plot(temps.index, rolling_mean, color="tab:red", label='Mean')
-ax1.set_xlabel("Date")
-ax1.set_ylabel("Temperature", color="tab:red")
-ax1.tick_params(axis='y', labelcolor="tab:red")
-ax1.set_title("Rolling mean and variance over annual periods")
+        # Create a second y-axis for variance
+        self.ax2 = self.ax1.twinx()
+        self.ax2.plot(self.temps.index, self.rolling_variance, color="tab:blue", label='Variance')
+        self.ax2.set_ylabel("Variance", color="tab:blue")
+        self.ax2.tick_params(axis='y', labelcolor="tab:blue")
 
-# Create a second y-axis for variance
-ax2 = ax1.twinx()
-ax2.plot(temps.index, rolling_variance, color="tab:blue", label='Variance')
-ax2.set_ylabel("Variance", color="tab:blue")
-ax2.tick_params(axis='y', labelcolor="tab:blue")
+        # Add legends
+        self.ax1.legend(loc='upper left')
+        self.ax2.legend(loc='upper right')
 
-# Add legends
-ax1.legend(loc='upper left')
-ax2.legend(loc='upper right')
+        plt.show()
 
-plt.show()
-
-# Validate Temperature Range
-print("Max Temperature Range: ", temps['Tmax'].min(), temps['Tmax'].max())
-print("Min Temperature Range: ", temps['Tmin'].min(), temps['Tmin'].max())
-print("Average Temperature Range: ", temps['T'].min(), temps['T'].max())
+        # Validate Temperature Range
+        print("Max Temperature Range: ", self.temps['Tmax'].min(), self.temps['Tmax'].max())
+        print("Min Temperature Range: ", self.temps['Tmin'].min(), self.temps['Tmin'].max())
+        print("Average Temperature Range: ", self.temps['T'].min(), self.temps['T'].max())
 
 # 5.1.4 (page 14) Seasonal Decomposition
 # come up with new label for decompose_result
@@ -804,9 +803,5 @@ plt.ylabel('Option Price USD')
 plt.xlabel('Strikes (HDD)')
 plt.legend(df.columns, loc=4)
 plt.show()
-
-
-
-
 
 
