@@ -319,7 +319,7 @@ const OpenEarth = () => {
               fontSize: 13,
               marginTop: 3
             }}>
-              <Icon icon={'mdi:filters-broken'} />
+              <Icon icon={'mdi:search'} />
               <span style={{ marginLeft: 5 }}>Filters</span>
             </div>
 
