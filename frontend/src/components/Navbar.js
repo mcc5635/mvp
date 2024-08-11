@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-logo" style={{ color: 'rgb(18, 14, 107)' }}>
         {location.pathname === '/earth/openearth' && (
-          <h2>Cervet's Asset Library</h2>
+          <h2>Interstellar Asset Library</h2>
         )}
       </div>
       <ul className="navbar-links">
