@@ -11,10 +11,12 @@ from statsmodels.tsa.stattools import adfuller
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
 from statsmodels.tsa.ar_model import AutoReg, ar_select_order, AutoRegResults
+from scipy.stats import norm
+from scipy.optimize import curve_fit
 
 class Engine:
-    def __init__(self, max_temp=None, min_temp=None):
-        self.max_temp,
+    def __init__(self, max_temp, min_temp, temps, temps_season, first_ord):
+        self.max_temp
         self.min_temp
         self.temps = None
         self.temps_season = None
@@ -156,18 +158,16 @@ class Engine:
 
 # 5.1.5 Fit models to daily average temperature time series, model parameters analysis
 #
-# Model 1 
-# Model 2
-from scipy.stats import norm
-from scipy.optimize import curve_fit
-temp_t = temps['T'].copy(deep=True)
-temp_t = temp_t.to_frame()
+        # Model 1 
+        # Model 2
+        temp_t = temps['T'].copy(deep=True)
+        temp_t = temp_t.to_frame()
 
 # Defined Models
 # Model 1 (Sine)
 def model_fit(x, a, b, a1, b1):
-    omega = 2*np.pi/365.25
-    y_pred = a + b*x + a1*np.cos(omega*x) + b1*np.sin(omega*x)
+    self.omega = 2*np.pi/365.25
+    y_pred = a + b*x + a1*np.cos(self.omega*x) + b1*np.sin(self.omega*x)
     return y_pred
 def RSS(y, y_pred):
     return np.sqrt( (y - y_pred)**2 ).sum()
