@@ -114,6 +114,12 @@ class Airport(Base):
         print(r.content)
         return r.json()['properties']['periods'][0] if 'properties' in r.json() else None
 
+    def get_destination_list(self):
+        airports = db_session.query(Flight.destination_airport_iata).filter_by(origin_airport_iata=self.iata).distinct().all()
+        return [airport[0] for airport in airports if airport[0] is not None]
+
+
+
 SessionLocal = sessionmaker(bind=engine)
 db_session = SessionLocal()
     
@@ -174,3 +180,21 @@ class Flight(Base):
     callsign = Column(String)
     airline_icao = Column(String)
     geometry = Column(Geometry('POINT', srid=4326))
+
+# Next step later today: define flights.prim_key in POSTGIS (~time = 24.13m)
+res = db_session.query(Flight).filter(Flight.registration == 'N557AS').first()
+res
+
+# change A7197D to proper airplane name id
+# print(res)
+
+from sqlalchemy import func
+from sqlalchemy import cast
+
+# Find every data point where a plane is flying 40,000 feet over an airport
+
+airport_query = Airport.wkb_geometry.ST_Transform(3857).ST_Buffer(2000).ST_Transform(4326)
+
+res = db_session.query(Flight).filter(func.ST_Intersects(Flight.geometry, airport_query)).filter(Flight.altitude > (cast(Airport.alt, Integer) + 40000)).all()
+
+print(len(res))
