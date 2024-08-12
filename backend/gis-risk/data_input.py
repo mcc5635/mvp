@@ -134,42 +134,4 @@ us_airports = db_session.query(Airport).filter(Airport.country == "United States
 us_airports[0].get_current_weather()
 
 
-# # Part 3: New Airports table
-#from sqlalchemy import create_engine
-#engine = create_engine("postgresql://postgres:fr24Password@localhost:5432/flightradar")
-
-#import pandas as pd
-#import geopandas as gpd
-#from glob import glob
-
-# files = glob("data/gis-risk/airports.csv")
-# print(len(files))
-
-
-# file = files[0]
-# df = pd.read_csv(file)
-# print(df.head)
-
-# print(df.columns)
-
-# gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude), crs=4326).drop(['latitude', 'longitude'], axis=1)
-# print(gdf.head)
-
-# gdf.to_postgis("flights", engine, if_exists="append", chunksize=10000)
-
-# # from sqlalchemy import create_engine
-# # # Note: Password = fr24Password, Localhost = localhost:5432 (Postgres instance), Database name = flightradar
-
-# # engine = create_engine("postgresql://postgres:fr24Password@localhost:5432/flightradar")
-
 from tqdm import tqdm
-
-# # for file in tqdm(files):
-# #     df = pd.read_csv(file)
-# #     print(df.head)
-
-# #     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df.longitude, df.latitude), crs=4326).drop(['latitude', 'longitude'], axis=1)
-
-# #     print(gdf.head(2))
-
-# #     gdf.to_postgres("flights", engine, if_exists="append", chunksize=10000)
