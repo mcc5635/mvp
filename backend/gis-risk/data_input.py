@@ -16,7 +16,7 @@ from glob import glob
 
 # files = glob("../data/gis-risk/flights.csv")
 # print(len(files))
-
+from tqdm import tqdm
 
 # file = files[0]
 # df = pd.read_csv(file)
@@ -133,5 +133,44 @@ us_airports = db_session.query(Airport).filter(Airport.country == "United States
 # print(us_airports)
 us_airports[0].get_current_weather()
 
+# Example: Pull windspeed for given list
 
-from tqdm import tqdm
+for airport in us_airports[0:10]:
+    weather = airport.get_current_weather()
+    windspeed = weather['windSpeed'] if weather else "unknown"
+    print(airport.name, windspeed)
+
+# Example: Identify all airports within 45KM of Lakeland, Florida
+
+lakeland_fl = Point(-81.971, 28.04) # Example given "location" for pricing tier
+lakeland_fl = from_shape(lakeland_fl, srid=4326).ST_Transform(3857).ST_Buffer(45000).ST_Transform(4326)
+
+airports = db_session.query(Airport).filter(Airport.wkb_geometry.ST_Intersects(lakeland_fl)).all()
+
+for airport in airports:
+    print(airport.name)
+
+# Define a class for our existing flights table
+class Flight(Base):
+    
+    __tablename__ = 'flights'
+    
+    prim_key = Column(Integer, primary_key=True)
+    id = Column(String)
+    icao_24bit = Column(String)
+    heading = Column(Integer)
+    altitude = Column(Integer)
+    ground_speed = Column(Integer)
+    squawk = Column(Integer)
+    aircraft_code = Column(String)
+    registration = Column(String)
+    time = Column(Integer)
+    origin_airport_iata = Column(String)
+    destination_airport_iata = Column(String)
+    number = Column(String)
+    airline_iata = Column(String)
+    on_ground = Column(Integer)
+    vertical_speed = Column(Integer)
+    callsign = Column(String)
+    airline_icao = Column(String)
+    geometry = Column(Geometry('POINT', srid=4326))
