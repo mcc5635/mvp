@@ -8,6 +8,7 @@
 # engine = create_engine("postgresql://postgres:fr24Password@localhost:5432/flightradar")
 
 import csv
+import requests
 from flask import session
 import pandas as pd
 import geopandas as gpd
@@ -101,6 +102,18 @@ class Airport(Base):
     def get_point(self):
         return to_shape(self.wkb_geometry)
 
+    def get_current_weather(self):
+        url = f"https://api.weather.gov/points/{self.lat},{self.lon}"
+        r = requests.get(url)
+        print(r)
+        if not r.ok:
+            return None
+
+        r = requests.get(r.json()['properties']['forecast'])
+        print(r.json())
+        print(r.content)
+        return r.json()['properties']['periods'][0] if 'properties' in r.json() else None
+
 SessionLocal = sessionmaker(bind=engine)
 db_session = SessionLocal()
     
@@ -114,21 +127,11 @@ with open('../data/gis-risk/airports.csv') as rdr:
         db_session.add(airport)
 
 db_session.commit()
-    
-# Airport.__table__.create(engine)
 
-# Session = sessionmaker(bind=engine)
-# Session = Session()
+us_airports = db_session.query(Airport).filter(Airport.country == "United States").all()
 
-# csv_file_path = '../data/gis-risk/airports.csv'
-
-# with open(csv_file_path, newline='') as csvfile:
-#     reader = csv.DictReader(csvfile)
-#     for row in reader:
-#         airport = Airport(row)
-#         session.add(airport)
-
-# session.commit()
+# print(us_airports)
+us_airports[0].get_current_weather()
 
 
 # # Part 3: New Airports table
