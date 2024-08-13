@@ -20,11 +20,11 @@ import TablePagination from '@mui/material/TablePagination'
 
 
 //**  Icon
-import Icon from '../../../src/components/styling/icon'
+import Icon from '../styling/icon'
 
 
 // ** Map 
-import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet'
+import MapComponentOpenStreet from '../Map'
 
 const createData = (id, name, location, portfolio, date, epc, type, asset) => {
   return { id, name, location, portfolio, date, epc, type, asset }
@@ -225,7 +225,7 @@ const OpenEarth = () => {
 
   return (
 
-    <Box sx={{ ml: 5, mb: 5, gap: 5, mt: 3 }}>
+    <Box sx={{ ml: 5, mb: 5, gap: 5, mt: 0 }}>
       <Grid container spacing={0}>
         <Grid item xs={12}>
           <Box
@@ -264,48 +264,7 @@ const OpenEarth = () => {
 
         <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', height: '95%' }}>
           <Box sx={{ flex: 1, ml: '5%' }}>
-            <MapContainer
-              center={[40.505, -100.09]}
-              zoom={10}
-              // style={{ height: '95%', width: '100%', marginRight: 5 }}
-              zoomControl={false}
-            >
-              <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                opacity={0.5}
-                style={{ filter: 'hue-rotate(120deg) saturate(200%) brightness(75%)', color: 'green' }}
-              />
-              <Marker position={[40.505, -100.09]}>
-                <Popup>
-                  I am a pop-up!
-                </Popup>
-              </Marker>
-              <ZoomControl position="bottomright" />
-
-              <div style={{
-                position: 'absolute',
-                top: 10,
-                left: 10,
-                zIndex: 1000,
-                background: 'white',
-                borderRadius: 5
-              }}>
-                <input
-                  type="text"
-                  placeholder="Search for locations"
-                  style={{
-                    padding: '10px',
-                    width: '500px',
-                    border: '1px solid #ccc',
-                    fontSize: '14px',
-                    fontStyle: 'italic',
-                    borderRadius: '5px' // Add this line
-                  }}
-                />
-              </div>
-
-            </MapContainer>
+            <MapComponentOpenStreet height={950} showSearch={true}/>
           </Box>
         </Grid>
 

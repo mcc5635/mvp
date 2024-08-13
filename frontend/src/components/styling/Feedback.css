@@ -1,0 +1,11 @@
+.message-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(17,5,78);
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  

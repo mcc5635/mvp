@@ -1,16 +1,17 @@
-import React from "react"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Navbar from "./components/Navbar"
-import Sidebar from "./components/Sidebar"
-import WeatherOptions from "./components/WeatherOptions"
-import ProposeContract from "./components/ProposeContract"
-import PayoutTerms from "./components/PayoutTerms"
-import Summary from "./components/Summary"
-import Earth from "./components/earth/OpenEarth"
-import AssetLibrary from "./components/earth/AssetLibrary"
-import Portfolio from "./components/earth/Portfolio"
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import WeatherOptions from "./components/WeatherOptions";
+import ProposeContract from "./components/ProposeContract";
+import PayoutTerms from "./components/PayoutTerms";
+import Summary from "./components/Summary";
+import Earth from "./components/earth/OpenEarth";
+import AssetLibrary from "./components/earth/AssetLibrary";
+import Portfolio from "./components/earth/Portfolio";
+import Feedback from "./components/Feedback";
 
-import "./App.css"
+import "./App.css";
 
 function App() {
   return (
@@ -26,10 +27,12 @@ function App() {
           <Route path="/earth/openearth" element={<Earth />} />
           <Route path="/earth/assetlibrary" element={<AssetLibrary />} />
           <Route path="/earth/portfolio" element={<Portfolio />} />
+          
         </Routes>
+        <Feedback />
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

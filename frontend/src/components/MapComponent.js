@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { MapContainer, TileLayer, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "leaflet-geosearch/dist/geosearch.css"
 import L from "leaflet"
@@ -10,7 +9,7 @@ const MapComponent = ({ setLatitude, setLongitude, setCityName }) => {
     const map = L.map("map").setView([51.505, -0.09], 13)
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "", // Set attribution to an empty string
+      attribution: "",
     }).addTo(map)
 
     const provider = new OpenStreetMapProvider()
