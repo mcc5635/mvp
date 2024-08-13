@@ -4,7 +4,7 @@ import "./styling/Summary.css"
 
 const Summary = () => {
   const location = useLocation()
-  const { weatherType, startDate, endDate, rainfallIndex, payoutType, payoutStructure } = location.state
+  const { weatherType, startDate, endDate, payoutType, payoutStructure } = location.state
 
   return (
     <div className="summary">

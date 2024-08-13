@@ -37,3 +37,17 @@
 .sidebar-bottom-text p {
   margin: 5px 0; 
 }
+
+.sidebar-links li.active {
+  background-color: rgb(11, 4, 67); 
+  border-left: 3px solid rgb(216, 207, 207);
+ 
+}
+
+.sidebar-links li a {
+  color: white;
+  text-decoration: none; 
+  display: flex;
+  align-items: center; 
+}
+

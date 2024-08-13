@@ -1,33 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./styling/Sidebar.css";
 import Icon from '../components/styling/icon';
 
 const Sidebar = () => {
+  const location = useLocation();
+
   return (
     <div className="sidebar">
       <ul className="sidebar-links">
-        <li>
+        <li className={location.pathname === "/" ? "active" : ""}>
           <Link to="/">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:home'} />
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === "/accept" ? "active" : ""}>
           <Link to="/accept">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:abc'} />
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === "/earth/portfolio" ? "active" : ""}>
           <Link to="/earth/portfolio">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:earth'} />
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === "/earth/openearth" ? "active" : ""}>
           <Link to="/earth/openearth">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:ac-unit'} />
           </Link>
         </li>
-        <li>
+        <li className={location.pathname === "/earth/assetlibrary" ? "active" : ""}>
           <Link to="/earth/assetlibrary">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:web-asset'} />
           </Link>

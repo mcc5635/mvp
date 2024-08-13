@@ -1,9 +1,7 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import React from "react"
 import "../styling/AssetLibrary.css"
 
 const AssetLibrary = () => {
-  const navigate = useNavigate()
 
   return (
     <div className="asset-library">
