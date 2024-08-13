@@ -12,7 +12,7 @@ import DropDownButton from "../Dropdowns/DropdownButton"
 const filterCards = [
   { title: "Climate Scenario", content: "Business as usual" },
   { title: "Risk Category", content: "Combined physical risk" },
-  { title: "EarthScan Rating", content: "Very low to very high" },
+  { title: "Open Earth Rating", content: "Very low to very high" },
   { title: "Year", content: "2020" },
 ];
 
@@ -41,7 +41,7 @@ const Portfolio = () => {
             <Box className="box-header">
               <Typography variant="body2" color="black" sx={{ fontSize: '16px' }}>
                 <Typography variant="body2" component="span" sx={{ padding: '0 4px', color: 'rgb(75, 63, 160)', fontSize: '16px' }}>
-                  Cervest
+                  Interstellar
                 </Typography>{' '}
                 <Typography variant="body2" component="span" sx={{ color: 'rgb(18, 14, 107)', fontSize: '16px' }}>{' > '}</Typography>
                 <Typography variant="body2" component="span" sx={{ color: 'grey', fontSize: '16px' }}>
@@ -59,7 +59,7 @@ const Portfolio = () => {
                     },
                   }}
                 >
-                  Create Climate Report
+                  Generate Climate Report
                 </Button>
                 <Button
                   variant="contained"
