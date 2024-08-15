@@ -12,6 +12,7 @@ import Portfolio from "./components/earth/Portfolio";
 import Feedback from "./components/Feedback";
 
 import "./App.css";
+import Organisation from "./components/Organisation";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WeatherOptions />} />
           <Route path="/propose" element={<ProposeContract />} />
+          <Route path="/organisation" element={<Organisation/>} />
           <Route path="/payout-terms" element={<PayoutTerms />} />
           <Route path="/summary" element={<Summary />} />
           <Route path="/earth/openearth" element={<Earth />} />

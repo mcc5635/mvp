@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="navbar-logo" style={{ color: 'rgb(18, 14, 107)' }}>
         {location.pathname === '/earth/openearth' ? (
           <h2 style={{fontSize: 25, fontWeight:'bold'}}>Interstellar Asset Library</h2>
-        ) : location.pathname === '/earth/portfolio' ? (
+        ) : location.pathname === '/organisation' ? (
           <h2 style={{fontSize: 25, fontWeight:'bold'}}>Commercial Real Estate</h2>
         ) : null}
 

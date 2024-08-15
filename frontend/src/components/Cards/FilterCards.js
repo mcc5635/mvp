@@ -1,6 +1,6 @@
 import Icon from '../styling/icon';
 import Box from '@mui/material/Box';
-import Dropdown from '../Dropdowns';
+import Dropdown from '../Dropdowns/BasicDropdown';
 import Card from '@mui/material/Card';
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
