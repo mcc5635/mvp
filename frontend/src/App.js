@@ -9,6 +9,7 @@ import Summary from "./components/Summary"
 import Earth from "./components/earth/OpenEarth"
 import AssetLibrary from "./components/earth/AssetLibrary"
 import Portfolio from "./components/earth/Portfolio"
+import Feedback from "./components/Feedback"
 
 import "./App.css"
 
