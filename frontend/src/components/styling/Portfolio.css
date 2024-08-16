@@ -70,4 +70,75 @@
   .solar-icon {
     background-image: url('../assets/wind.webp');
   }
+
+  .button-class {
+    background-color: #d1d1d1;
+    color: #666666;
+    box-shadow: none;
+    font-weight: 600;
+    padding: 2px 8px;
+    font-size: 11px;
+    min-width: auto;
+    text-transform: none;
+  }
+  
+  .button-class:hover {
+    background-color: #d1d1d1;
+  }
+
+  .box-header {
+    margin-left: 3%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(245, 246, 248);
+}
+
+.filtercards-container {
+  /* margin-left: 1%; */
+  height: 60px;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterbutton-container {
+  margin-left: 1%;
+  height: 65px;
+  width: 55%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardscontainer-parent {
+  margin-left: 3%;
+  height: 60px;
+  padding-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(245, 246, 248);
+}
+
+.graphs-parent {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.buttons-parent {
+  display: flex;
+  align-items: center;
+  width: 25%;
+  justify-content: space-around;
+}
+
+
+
+
+
+
+
+  
   

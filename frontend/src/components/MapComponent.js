@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import { MapContainer, TileLayer, useMap } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import "leaflet-geosearch/dist/geosearch.css"
 import L from "leaflet"

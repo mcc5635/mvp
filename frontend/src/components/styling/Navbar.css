@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  background-color: white; /* Set background to white */
-  margin-left: 5%;
+  padding: 0 0px;
+  background-color: white;
+margin-left: 5%;
 }
 
 .navbar-logo img {
@@ -22,11 +22,16 @@
 }
 
 .navbar-links a {
-  color: grey; /* Set text color to grey */
+  color: grey; 
   text-decoration: none;
   font-weight: bold;
 }
 
 .navbar-links a:hover {
-  color: black; /* Optional: Change color on hover */
+  color: black;
+}
+
+.user-avatar{
+  height: 50px;
+  width: 50px;
 }
