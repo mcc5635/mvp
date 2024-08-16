@@ -21,7 +21,7 @@ https://github.com/mcc5635/energy-derivative-contracts
 
 1. Do we need to use gridded-etl-tools to properly format geojson into zarr for input into pricing engine for proper parametric valuation?
 
-2. How much can we charge for climate risk parametric insurnace?
+2. How much can we charge for climate risk parametric insurance?
 
 3. How will offering change based on weather risk offering? (Mitiga: Flood, Hurricane, Hale, Snow)
 
