@@ -25,7 +25,7 @@ const Navbar = () => {
 
         <div className="navbar-logo">
           {location.pathname === '/earth/openearth' && (
-            <img src="/avatar.webp" alt="logo" className="user-avatar" />
+            <img src="/avatar_replace.webp" alt="logo" className="user-avatar" />
 
           )}
         </div>
