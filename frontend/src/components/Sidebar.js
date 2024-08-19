@@ -14,8 +14,8 @@ const Sidebar = () => {
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:home'} />
           </Link>
         </li>
-        <li className={location.pathname === "/accept" ? "active" : ""}>
-          <Link to="/accept">
+        <li className={location.pathname === "/organisation" ? "active" : ""}>
+          <Link to="/organisation">
             <Icon sx={{ color: 'black', fontSize: 15, mr: 5 }} icon={'mdi:abc'} />
           </Link>
         </li>

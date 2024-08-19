@@ -6,12 +6,12 @@ const Navbar = () => {
   const location = useLocation()
 
   return (
-    <nav className="navbar" style={{ height: "50px" }}>
-      <div className="navbar-logo" style={{ color: "rgb(18, 14, 107)" }}>
-        {location.pathname === "/earth/openearth" ? (
-          <h2 style={{ fontSize: 25, fontWeight: "bold" }}>Interstellar Asset Library</h2>
-        ) : location.pathname === "/earth/portfolio" ? (
-          <h2 style={{ fontSize: 25, fontWeight: "bold" }}>Commercial Real Estate</h2>
+    <nav className="navbar" style={{height: '50px'}}>
+      <div className="navbar-logo" style={{ color: 'rgb(18, 14, 107)' }}>
+        {location.pathname === '/earth/openearth' ? (
+          <h2 style={{fontSize: 25, fontWeight:'bold'}}>Interstellar Asset Library</h2>
+        ) : location.pathname === '/organisation' ? (
+          <h2 style={{fontSize: 25, fontWeight:'bold'}}>Commercial Real Estate</h2>
         ) : null}
       </div>
       <ul className="navbar-links">
