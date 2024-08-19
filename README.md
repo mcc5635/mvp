@@ -1,4 +1,4 @@
-# Chainlink Functions <> Parametric Insurance Sample app
+# Interstellar Risk mvp
 
 This use case showcases how Chainlink Functions can be used to trigger a parametric insurance to offer payouts to clients, with Chainlink Functions being used to fetch data from 3 different weather APIs for temperature data.
 
