@@ -1,15 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import WeatherOptions from "./components/WeatherOptions";
-import ProposeContract from "./components/ProposeContract";
-import PayoutTerms from "./components/PayoutTerms";
-import Summary from "./components/Summary";
-import Earth from "./components/earth/OpenEarth";
-import AssetLibrary from "./components/earth/AssetLibrary";
-import Portfolio from "./components/earth/Portfolio";
-import Feedback from "./components/Feedback";
+
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Navbar from "./components/Navbar"
+import Sidebar from "./components/Sidebar"
+import WeatherOptions from "./components/WeatherOptions"
+import ProposeContract from "./components/ProposeContract"
+import PayoutTerms from "./components/PayoutTerms"
+import Summary from "./components/Summary"
+import Earth from "./components/earth/OpenEarth"
+import AssetLibrary from "./components/earth/AssetLibrary"
+import Portfolio from "./components/earth/Portfolio"
+import Feedback from "./components/Feedback"
 
 import "./App.css";
 import Organisation from "./components/Organisation";

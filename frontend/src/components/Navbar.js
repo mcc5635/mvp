@@ -13,7 +13,6 @@ const Navbar = () => {
         ) : location.pathname === '/organisation' ? (
           <h2 style={{fontSize: 25, fontWeight:'bold'}}>Commercial Real Estate</h2>
         ) : null}
-
       </div>
       <ul className="navbar-links">
         {/* <li>
@@ -24,12 +23,8 @@ const Navbar = () => {
         </li> */}
 
         <div className="navbar-logo">
-          {location.pathname === '/earth/openearth' && (
-            <img src="/avatar.webp" alt="logo" className="user-avatar" />
-
-          )}
+          {location.pathname === "/earth/openearth" && <img src="/favicon.ico" alt="logo" className="user-avatar" />}
         </div>
-
       </ul>
     </nav>
   )
