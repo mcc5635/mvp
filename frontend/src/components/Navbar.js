@@ -7,11 +7,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar" style={{height: '50px'}}>
-      <div className="navbar-logo" style={{ color: 'rgb(18, 14, 107)' }}>
+      <div className="navbar-logo" style={{ color: 'rgb(0, 0, 0)' }}>
         {location.pathname === '/earth/openearth' ? (
-          <h2 style={{fontSize: 25, fontWeight:'bold'}}>Interstellar Asset Library</h2>
-        ) : location.pathname === '/organisation' ? (
-          <h2 style={{fontSize: 25, fontWeight:'bold'}}>Commercial Real Estate</h2>
+          <h2 style={{fontSize: 25, fontWeight:'bold'}}></h2>
+        ) : location.pathname === '/organization' ? (
+          <h2 style={{fontSize: 25, fontWeight:'bold'}}>Odyssey</h2>
         ) : null}
       </div>
       <ul className="navbar-links">

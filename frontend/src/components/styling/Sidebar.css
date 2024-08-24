@@ -4,9 +4,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgb(18, 14, 107);
+  background-color: rgba(255, 255, 255, 0.9); /* Changed to white with slight transparency */
   padding-top: 5px;
   transition: transform 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a slight shadow for depth */
 }
 
 .sidebar-links {
@@ -19,7 +20,7 @@
 }
 
 .sidebar-links a {
-  color: white;
+  color: rgba(0, 0, 0, 0.7); /* Changed to a dark grey color */
   text-decoration: none;
   font-weight: bold;
   display: block;
@@ -31,7 +32,7 @@
   bottom: 20px;
   width: 100%;
   text-align: center; 
-  color: white; 
+  color: rgba(0, 0, 0, 0.7); /* Changed to a dark grey color */ 
 }
 
 .sidebar-bottom-text p {
@@ -39,15 +40,13 @@
 }
 
 .sidebar-links li.active {
-  background-color: rgb(11, 4, 67); 
+  background-color: rgba(200, 200, 200, 0.5); /* Changed to a light grey with transparency */
   border-left: 3px solid rgb(216, 207, 207);
- 
 }
 
 .sidebar-links li a {
-  color: white;
+  color: rgba(0, 0, 0, 0.7); /* Changed to a dark grey color */
   text-decoration: none; 
   display: flex;
   align-items: center; 
 }
-

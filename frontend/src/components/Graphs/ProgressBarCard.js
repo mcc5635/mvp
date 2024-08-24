@@ -9,8 +9,8 @@ const ProgressChart = ({progress, title}) => {
   return (
     <Card sx={{backgroundColor: 'white', height: '300px', boxShadow: 'none' }}>
       <CardHeader
-        title='Overall Risk'
-        subheader='Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.'
+        title='Area of Interest'
+        subheader=''
         sx={{ 
           textAlign: 'left',
           color: 'rgb(117, 116, 123)'

@@ -240,15 +240,11 @@ const OpenEarth = () => {
           >
             <Typography variant="body2" color="black" fontSize={13}>
               <Typography variant="body2" component="span" sx={{ backgroundColor: 'lightgreen', padding: '0 4px', color: 'green' }}>
-                Starter
+                Total Areas:
               </Typography>
               {' '}
               <Typography variant="body2" component="span" sx={{ color: 'rgb(18, 14, 107)' }}>
-                96 of 5000 assets added
-              </Typography>
-              {' | '}
-              <Typography variant="body2" component="span" sx={{ color: 'rgb(18, 14, 107)' }}>
-                2 portfolios
+                1
               </Typography>
             </Typography>
 

@@ -50,7 +50,7 @@ const WeatherOptions = () => {
 
   return (
     <div className="weather-options">
-      <h2>Select the weather type covered by the contract</h2>
+      <h2></h2>
       <div className="options">
         {weatherOptionsData.map((option) => (
           <div

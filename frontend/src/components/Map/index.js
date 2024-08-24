@@ -10,7 +10,7 @@ const MapComponentOpenStreet = ({ height, showSearch = false, showRange = false 
             style={{ height: `${height}px`, position: 'relative' }}
         >
             <TileLayer
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                attribution='&copy; <a href="http://osm.org/copyright"></a>'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 opacity={0.5}
             />
@@ -27,19 +27,7 @@ const MapComponentOpenStreet = ({ height, showSearch = false, showRange = false 
                     />
                 </div>
             )}
-            {showRange && (
-                <div className='range-container'>
-                    <text style={{fontSize: 15, fontWeight: 400, marginBottom: '10%', textAlign:'left'}}>Combined Physical Risk</text>
-                    <div className="progress-bar-map" />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0px' }}>
-                        <span>Very Low</span>
-                        <span>Low</span>
-                        <span>Medium</span>
-                        <span>High</span>
-                        <span>Very High</span>
-                    </div>
-                </div>
-            )}
+            
         </MapContainer>
     );
 };
