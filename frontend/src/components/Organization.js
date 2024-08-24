@@ -37,17 +37,6 @@ const Organization = () => {
                     },
                   }}
                 >
-                  Generate Report
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: 'rgb(232, 233, 240)', color: '#666666', boxShadow: 'none', fontWeight: '600', padding: '2px 8px', fontSize: '11px', minWidth: 'auto', textTransform: 'none',
-                    '&:hover': {
-                      backgroundColor: 'rgb(232, 233, 240)',
-                    },
-                  }}
-                >
                   Submit
                 </Button>
                 <Box sx={{ borderLeft: '1px solid grey', height: '24px', mx: 1 }} />
