@@ -24,7 +24,7 @@ import Icon from '../styling/icon'
 
 
 // ** Map 
-import MapComponentOpenStreet from '../Map'
+import MapComponentArc from '../Map'
 
 const createData = (id, name, location, portfolio, date, epc, type, asset) => {
   return { id, name, location, portfolio, date, epc, type, asset }
@@ -260,7 +260,7 @@ const OpenEarth = () => {
 
         <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column', height: '95%' }}>
           <Box sx={{ flex: 1, ml: '5%' }}>
-            <MapComponentOpenStreet height={950} showSearch={true}/>
+            <MapComponentArc height={950} showSearch={true}/>
           </Box>
         </Grid>
 

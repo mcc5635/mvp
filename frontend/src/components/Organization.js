@@ -1,10 +1,9 @@
 import "./styling/Portfolio.css"
 import React from "react"
 import LineGraph from "./Graphs/LineGraph"
-import MapComponentOpenStreet from "./Map"
+import MapComponentArc from "./Map"
 import { Box, Grid, Typography, Button } from '@mui/material'
 import Icon from './styling/icon'
-import DropDownButton from "./Dropdowns/DropdownButton"
 
 
 const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
@@ -70,7 +69,7 @@ const Organization = () => {
           <div style={{ width: "80%" }}>
             <Grid item xs={12} md={6} mt={3} sx={{ maxWidth: '100% !important' }}>
               <Box sx={{ flex: 1, ml: '5%' }}>
-                <MapComponentOpenStreet height={950} showSearch={true}/>
+                <MapComponentArc height={950} showSearch={true}/>
               </Box>
             </Grid>
           </div>

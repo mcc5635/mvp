@@ -6,7 +6,7 @@ import DropDownPortfolio from "../Dropdowns/PortfolioDropdown";
 import "../styling/Portfolio.css";
 import React, { useState } from "react";
 import LineGraph from "../Graphs/LineGraph";
-import MapComponentOpenStreet from "../Map";
+import MapComponentArc from "../Map";
 import FilterCard from "../Cards/FilterCards";
 import FilterButton from "../Cards/FilterButton";
 import ProgressChart from "../Graphs/ProgressBarCard";

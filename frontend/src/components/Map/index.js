@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
-import '../styling/MapComponentOpenStreet.css';
+import '../styling/MapComponentArc.css';
 
-const MapComponentOpenStreet = ({ height, showSearch = false, showRange = false }) => {
+const MapComponentArc = ({ height, showSearch = false, showRange = false }) => {
     return (
         <MapContainer
             center={[40.505, -100.09]}
@@ -32,4 +32,4 @@ const MapComponentOpenStreet = ({ height, showSearch = false, showRange = false 
     );
 };
 
-export default MapComponentOpenStreet;
+export default MapComponentArc;
