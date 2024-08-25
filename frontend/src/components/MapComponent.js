@@ -1,50 +1,28 @@
-import React, { useEffect } from "react"
-import "leaflet/dist/leaflet.css"
-import "leaflet-geosearch/dist/geosearch.css"
-import L from "leaflet"
-import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch"
+import MapView from "@arcgis/core/views/MapView";
+import Map from "@arcgis/core/Map"
+import { useEffect, useRef } from "react";
 
-const MapComponent = ({ setLatitude, setLongitude, setCityName }) => {
+import '../styling/MapComponentGIS.css';
+
+
+const MapComponentGIS = () => {
+  const mapRef = useRef(null);
   useEffect(() => {
-    const map = L.map("map").setView([51.505, -0.09], 13)
+    if(!mapRef?.current) return;
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "",
-    }).addTo(map)
+    const map = new Map({
+      basemap: "osm",
+    });
 
-    const provider = new OpenStreetMapProvider()
-
-    const searchControl = new GeoSearchControl({
-      provider,
-      style: "bar",
-      showMarker: true,
-      showPopup: false,
-      marker: {
-        icon: new L.Icon.Default(),
-        draggable: false,
-      },
-      maxMarkers: 1,
-      retainZoomLevel: false,
-      animateZoom: true,
-      autoClose: true,
-      searchLabel: "Enter address",
-      keepResult: true,
-    })
-
-    map.addControl(searchControl)
-
-    map.on("geosearch/showlocation", (result) => {
-      setLatitude(result.location.y)
-      setLongitude(result.location.x)
-      setCityName(result.location.label)
-    })
-
-    return () => {
-      map.remove()
-    }
-  }, [setLatitude, setLongitude, setCityName])
-
-  return <div id="map" style={{ height: "400px", width: "100%" }}></div>
+    const view = new MapView({
+      map:map,
+      container: mapRef.current,
+      center: [55,25],
+      zoom: 13,
+    });
+    return ()=> view && view.destroy();
+  }, []);
+  return <div className="viewDiv" ref={mapRef}></div>;
 }
 
-export default MapComponent
+export default MapComponentGIS;
