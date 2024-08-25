@@ -1,7 +1,8 @@
 import "./styling/Portfolio.css"
 import React from "react"
 import LineGraph from "./Graphs/LineGraph"
-import MapComponentArc from "./Map"
+import MapComponentGIS from "./GIS"
+
 import { Box, Grid, Typography, Button } from '@mui/material'
 import Icon from './styling/icon'
 
@@ -69,7 +70,7 @@ const Organization = () => {
           <div style={{ width: "80%" }}>
             <Grid item xs={12} md={6} mt={3} sx={{ maxWidth: '100% !important' }}>
               <Box sx={{ flex: 1, ml: '5%' }}>
-                <MapComponentArc height={950} showSearch={true}/>
+                <MapComponentGIS height={950} showSearch={true}/>
               </Box>
             </Grid>
           </div>
